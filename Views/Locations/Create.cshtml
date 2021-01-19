@@ -1,0 +1,52 @@
+﻿@model MoviesApi.Models.Location
+@{
+    ViewData["Title"] = "+ Novo Alguel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Novo Alguel</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="NameMovie" class="control-label"></label>
+                    <input asp-for="NameMovie" class="form-control" />
+                    <span asp-validation-for="NameMovie" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CpfClient" class="control-label"></label>
+                    <input asp-for="CpfClient" class="form-control" />
+                    <span asp-validation-for="CpfClient" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DTLocation" class="control-label"></label>
+                    <input asp-for="DTLocation" class="form-control" />
+                    <span asp-validation-for="DTLocation" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+

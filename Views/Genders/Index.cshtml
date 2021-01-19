@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MoviesApi.Models.Gender>
+@{
+    ViewData["Title"] = "Lista de Gêneros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @if (TempData["mensagem"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensagem"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-9">
+            <h3>Lista de Gêneros</h3>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-success d-block" asp-action="Create" asp-controller="Genders">+ Novo Gênero</a>
+        </div>
+    </div>
+
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(m => m.Id)</td>
+                        <td>@Html.DisplayNameFor(m => m.NameGender)</td>
+                        <td>@Html.DisplayNameFor(m => m.DTCreate)</td>
+                        <td>@Html.DisplayNameFor(m => m.Active)</td>
+                        <td>Ações</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.NameGender</td>
+                            <td>@item.DTCreate</td>
+                            <td>@item.Active</td>
+                            <td>
+                                <a asp-controller="Genders" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                                <a asp-controller="Genders" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Não existe filmes cadastrados!</p>
+        }
+    </div>
+
+</div>
+

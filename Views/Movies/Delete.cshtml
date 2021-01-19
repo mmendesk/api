@@ -1,0 +1,63 @@
+﻿@model MoviesApi.Models.Movie
+@{
+    ViewData["Title"] = "Deletar Filme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Deletar Filme</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="DeleteMovie">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" disabled />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Genders" class="control-label"></label>
+                    <input asp-for="Genders" class="form-control" disabled />
+                    <span asp-validation-for="Genders" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DTCreate" class="control-label"></label>
+                    <input asp-for="DTCreate" class="form-control" disabled />
+                    <span asp-validation-for="DTCreate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Active" class="control-label"></label>
+                    <td>
+                        @Html.RadioButtonFor(m => m.Active, MoviesApi.Models.TypeFilter.Sim, new { style = "width:20px;", id = "1" })
+                        <label for="1">Sim</label>
+                        @Html.RadioButtonFor(m => m.Active, MoviesApi.Models.TypeFilter.Nao, new { style = "width:20px;", id = "2" })
+                        <label for="2">Não</label>
+                    </td>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Deletar Filme" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+

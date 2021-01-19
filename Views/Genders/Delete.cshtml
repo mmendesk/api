@@ -1,0 +1,57 @@
+﻿@model MoviesApi.Models.Gender
+@{
+    ViewData["Title"] = "Deletar Gênero";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Deletar Gênero</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="DeleteGenders">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="NameGender" class="control-label"></label>
+                    <input asp-for="NameGender" class="form-control" disabled />
+                    <span asp-validation-for="NameGender" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DTCreate" class="control-label"></label>
+                    <input asp-for="DTCreate" class="form-control" disabled />
+                    <span asp-validation-for="DTCreate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Active" class="control-label"></label>
+                    <td>
+                        @Html.RadioButtonFor(m => m.Active, MoviesApi.Models.TypeFilter.Sim, new { style = "width:20px;", id = "1" })
+                        <label for="1">Sim</label>
+                        @Html.RadioButtonFor(m => m.Active, MoviesApi.Models.TypeFilter.Nao, new { style = "width:20px;", id = "2" })
+                        <label for="2">Não</label>
+                    </td>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Deletar Gênero" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+
