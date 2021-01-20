@@ -83,6 +83,7 @@ namespace MoviesApi.Controllers
             return View();
         }
         //HTTP Delete
+        //Carrega a pagina com os dados da locação para ter certeza que deseja deletar
         public IActionResult Delete(int? Id)
         {
             if (Id == null || Id == 0)
@@ -90,7 +91,7 @@ namespace MoviesApi.Controllers
                 return NotFound();
             }
 
-            //obtém o gênero pelo id
+            //obtém o locação pelo id
             var location = _context.Locations.Find(Id);
 
             if (location == null)

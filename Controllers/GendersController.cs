@@ -85,6 +85,7 @@ namespace MoviesApi.Controllers
             return View();
         }
         //HTTP Delete
+        //Carrega a pagina com os dados da gênero para ter certeza que deseja deletar
         public IActionResult Delete(int? Id)
         {
             if (Id == null || Id == 0)

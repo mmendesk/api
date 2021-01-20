@@ -85,6 +85,7 @@ namespace MoviesApi.Controllers
             return View();
         }
         //HTTP Delete
+        //Carrega a pagina com os dados do filme para ter certeza que deseja deletar
         public IActionResult Delete(int? id)
         {
 
@@ -114,6 +115,15 @@ namespace MoviesApi.Controllers
             _context.SaveChanges();
 
             TempData["mensagem"] = "O Filme foi excluído com sucesso!";
+
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public IActionResult DeleteSelected(Movie movies, int? id)
+        {
+            var movie = _context.Movies.Find(id);
+            _context.Movies.Remove(movie);
+            _context.SaveChanges();
 
             return RedirectToAction("Index");
         }

@@ -5,7 +5,7 @@
 }
 
 <div class="container">
-    @if(TempData["mensagem"] != null)
+    @if (TempData["mensagem"] != null)
     {
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             @TempData["mensagem"]
@@ -24,46 +24,54 @@
         </div>
     </div>
 
-    <div class="row">
-        <input type="submit" value="Exclusao em massa" onclick="return confirm ('Você tem certeza?')" />
-        @if(Model.Count() > 0)
-        {
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <td></td>
-                        <td>@Html.DisplayNameFor(m => m.Id)</td>
-                        <td>@Html.DisplayNameFor(m => m.Name)</td>
-                        <td>@Html.DisplayNameFor(m => m.GenderId)</td>
-                        <td>@Html.DisplayNameFor(m => m.DTCreate)</td>
-                        <td>@Html.DisplayNameFor(m => m.Active)</td>
-                        <td>Ações</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var item in Model)
-                    {
-                    <tr>
-                        <td><input type="checkbox" class="chkCheckBoxId" value="@item.Id" name="movieId"/></td>
-                        <td>@item.Id</td>
-                        <td>@item.Name</td>
-                        <td>@item.GenderId</td>
-                        <td>@item.DTCreate</td>
-                        <td>@item.Active</td>
-                        <td>
-                            <a asp-controller="Movies" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
-                            <a asp-controller="Movies" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
-                        </td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <p>Não existe filmes cadastrados!</p>
-        }
-    </div>
+    @using (Html.BeginForm("DeleteSelected", "Movies"))
+    {
+        <input type="submit" class="btn btn-primary" value="Submit" />
+        <div class="row">
+            @if (Model.Count() > 0)
+            {
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>@Html.DisplayNameFor(m => m.Id)</td>
+                            <td>@Html.DisplayNameFor(m => m.Name)</td>
+                            <td>@Html.DisplayNameFor(m => m.GenderId)</td>
+                            <td>@Html.DisplayNameFor(m => m.DTCreate)</td>
+                            <td>@Html.DisplayNameFor(m => m.Active)</td>
+                            <td>Ações</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><input type="checkbox" class="chkCheckBoxId" value="@item.Id" name="selectedMovies" /></td>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.GenderId</td>
+                                <td>@item.DTCreate</td>
+                                <td>@item.Active</td>
+                                <td>
+                                    <a asp-controller="Movies" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                                    <a asp-controller="Movies" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>Não existe filmes cadastrados!</p>
+            }
+        </div>
+    }
+
+
+
+
+
 
 </div>
 
